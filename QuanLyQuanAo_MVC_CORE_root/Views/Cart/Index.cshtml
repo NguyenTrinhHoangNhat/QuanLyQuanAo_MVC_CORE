@@ -1,0 +1,124 @@
+@{
+    ViewData["Title"] = "Cart Page";
+     Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model QuanLyQuanAo_MVC_CORE.Models.Cart
+<div class="container">
+    <div class="grid wide">
+        <div class="row ">
+            <div class="col p-9 m-12">
+                <div class="cart-has-products">
+                    <div class="cart-has-products-title">
+                        <ul class="has-products-title-list">
+                            <li class="has-products-title-item">Products</li>
+                            <li class="has-products-title-item hide-on-mobile">Price</li>
+                            <li class="has-products-title-item">Quantity</li>
+                            <li class="has-products-title-item">Subtotal</li>
+                        </ul>
+                    </div>
+                    <div class="cart-has-products-pro">
+                        @{
+                            if(ViewBag.ListProduct.Count == 0 || ViewBag.ListProduct == null ){
+                                <div class="has-products-pro-item">
+                                    <div style="width:100%;display: flex;justify-content: center;font-size:25px; padding:20px ">
+                                        Không có sản phẩm nào 
+                                    </div>
+                                </div>
+                            }else{
+                                @foreach(var item in  ViewBag.ListProduct){
+                                    <div class="has-products-pro-item">
+                                        <a href="~/Cart/RemoveProductInCart?idProduct=@item.Product.Id" class="has-products-pro-item-del">
+                                            <i class="fa-solid fa-x"></i>
+                                        </a>
+                                        <div class="has-products-pro-item-img-name">
+                                            <img src="~/img/Product/@item.Product.ImgUrl"
+                                                class="hide-on-mobile" alt="">
+                                            <div class="pro_item-name-type">
+                                                <h4 class="name">@item.Product.ProductName</h4>
+                                            </div>
+                                        </div>
+                                        <div class="has-products-pro-item-price">
+                                            <div class="pro-item-price hide-on-mobile">@string.Format("{0:n0}", item.Product.Price) đ</div>
+                                            <span class="pro-item-quantity">
+                                                <span>@item.CartDetail.Quantity</span>
+                                            </span>
+                                            <div class="pro-item-subtotal">@item.CartDetail.TotalMoney đ</div>
+                                        </div>
+                                    </div>
+                                }
+
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col p-3 m-12">
+                <div class="cart-products-cart_total" style="height: auto;">
+                    <h2 class="cart_total-name">Cart totals</h2>
+                    <div class="cart_total-subtotal">
+                        <p class="name">Subtotal:</p>
+                        @if(Model != null){
+                            <p class="money">@string.Format("{0:n0}", Model.TotalProducts) đ</p>
+                        }else{
+                            <p class="money">0đ</p>
+                        }
+                    </div>
+                    <div class="cart_total-allTotal">
+                        <p class="total-allTotal-name">Total</p>
+                        @if(Model != null){
+                             <div class="all-money">@string.Format("{0:n0}", Model.TotalProducts) đ</div>
+                        }else{
+                            <p class="money">0đ</p>
+                        }
+                    </div>
+                    @if(ViewBag.ListProduct.Count == 0 || ViewBag.ListProduct == null) {
+                        <a class="cart-total-checkout-btn" style="width:100%; padding:10px;display: block; text-align: center;" href="~/Home/Index">Mua hàng ngay</a>
+                    }else{
+
+                        <a href="~/Order/Index" style="width:100%; padding:10px;display: block; text-align: center;" class="cart-total-checkout-btn">Proceed to check out</a>
+                    }
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<script>
+
+    var countPlus = document.querySelectorAll(".pro-item-quantity .fa-plus")
+    var countMinus = document.querySelectorAll(".pro-item-quantity .fa-minus")
+    var count = document.querySelectorAll(".pro-item-quantity span")
+
+    function countPlusPro() {
+        countPlus.forEach((items, index) => {
+            var item = count[index]
+            items.onclick = function () {
+                var presentCount = item.innerHTML
+                presentCount++;
+                item.innerHTML = presentCount;
+            }
+        })
+    }
+    function countMinusPro() {
+        countMinus.forEach((items, index) => {
+            var item = count[index]
+            items.onclick = function () {
+                var presentCount = item.innerHTML
+                if (presentCount == 1) {
+                    item.innerHTML = presentCount;
+                } else {
+                    presentCount--;
+                    item.innerHTML = presentCount;
+                }
+            }
+        })
+    }
+    //hiện thanh search bản mobile
+    var searchMobilebtn = document.querySelector(".navbar-mobile-item-search")
+    searchMobilebtn.addEventListener("click", () => {
+        mobileSearch.classList.toggle("active")
+    })
+    countMinusPro();
+    countPlusPro();
+</script>

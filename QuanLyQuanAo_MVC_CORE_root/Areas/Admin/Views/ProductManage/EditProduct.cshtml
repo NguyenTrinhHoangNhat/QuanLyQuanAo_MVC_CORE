@@ -1,0 +1,167 @@
+@{
+    ViewData["Title"] = "AddProduct";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model QuanLyQuanAo_MVC_CORE.Models.Product
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Chỉnh sửa thong tin sản phẩm</h4>
+            <form class="forms-sample" action="EditProductSubmit" method="post" enctype="multipart/form-data">
+                <input type="text" value="@Model.Id" name="Id" hidden>
+                <div class="form-group">
+                    <label for="NamePro">Tên Sản phẩm</label>
+                    <input type="text" class="form-control" id="NamePro" placeholder="Nhập tên sản phẩm"
+                        value="@Model.ProductName" name="ProductName">
+                    <div class="text-danger">@Html.ValidationMessageFor(model => model.ProductName)</div>
+                </div>
+                <div class="form-group">
+                    <label for="ProTypeId">Loại sản phẩm</label>
+                    <select class="form-control" name="IdProductTypes" id="ProTypeId">
+                        @{
+                            foreach (var item in ViewBag.ListProductType)
+                            {
+                                if (item.Id == Model.IdProductTypes)
+                                {
+                                    <option selected value=@item.Id>@item.ProductTypesName</option>
+                                }
+                                else
+                                {
+                                    <option value=@item.Id>@item.ProductTypesName</option>
+                                }
+                            }
+                        }
+                    </select>
+                    <div class="text-danger">@Html.ValidationMessageFor(model => model.IdProductTypes)</div>
+                </div>
+                <div class="form-group">
+                    <label for="ProTypeId">Hãng</label>
+                    <select class="form-control" name="IdBrand" id="ProTypeId">
+                        @{
+                            foreach (var item in ViewBag.ListBrand)
+                            {
+                                if (item.Id == Model.IdBrand)
+                                {
+
+                                    <option selected value=@item.Id>@item.BrandName</option>
+                                }
+                                else
+                                {
+                                    <option value=@item.Id>@item.BrandName</option>
+
+                                }
+                            }
+                        }
+                    </select>
+                    <div class="text-danger">@Html.ValidationMessageFor(model => model.IdBrand)</div>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="textInputSize" placeholder="Nhập loại size">
+                    <span id="addCheckboxSize"
+                        style="display: inline-block; padding:10px 20px; color:green;background-color:white;border:1px solid #666">
+                        Thêm size
+                    </span>
+                    <div id="checkboxSizeContainer" style="display: flex;gap:20px">
+                        @{
+                            var listSize = Model.SizeList.Split("-");
+                            foreach (var item in listSize)
+                            {
+                                <input checked type="checkbox" name="listSize" value="@item" id="@item" />
+                                <label for="@item">@item</label>
+                            }
+                        }
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="textInputColor" placeholder="Màu_bảng màu hex">
+                    <span id="addCheckboxColor"
+                        style="display: inline-block; padding:10px 20px; color:green;background-color:white;border:1px solid #666">
+                        Thêm màu
+                    </span>
+                    <div id="checkboxColorContainer" style="display: flex;gap:20px">
+                        @{
+                            var listColor = Model.ColorList.Split("-");
+                            foreach (var item in listColor)
+                            {
+                                <input checked type="checkbox" name="listColor" value="@item" id="@item" />
+                                <label for="@item">@item</label>
+                            }
+                        }
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="NewPrice">Giá</label>
+                            <input type="number" class="form-control" id="NewPrice" placeholder="Nhập giá mới"
+                                value="@Model.Price" name="Price">
+                            <div class="text-danger">@Html.ValidationMessageFor(model => model.Price)</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="Amout">Số lượng</label>
+                            <input type="number" class="form-control" id="Amout" value="@Model.Amout" name="Amout"
+                                placeholder="Nhập số lượng sản phẩm">
+                            <div class="text-danger">@Html.ValidationMessageFor(model => model.Amout)</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Ảnh Sản phẩm</label>
+                    <input type="file" name="ProImg" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="exampleTextarea1">Mô tả </label>
+                    <textarea name="Description" class="form-control" id="exampleTextarea1"
+                        rows="4">
+                        @Model.Description</textarea>
+                    <div class="text-danger">@Html.ValidationMessageFor(model => model.Description)</div>
+                </div>
+                <button type="submit" class="btn btn-primary mr-2">Chỉnh sửa sản phẩm</button>
+                <a href="~/Admin/ProductManage/Index" class="btn btn-light">Trở về</a>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    document.getElementById('addCheckboxSize').addEventListener('click', function () {
+        const inputValue = document.getElementById('textInputSize').value;
+        const checkboxContainer = document.getElementById('checkboxSizeContainer');
+        if (inputValue) {
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.name = 'listSize';
+            checkbox.value = inputValue;
+            checkbox.id = inputValue;
+
+            const label = document.createElement('label');
+            label.setAttribute('for', inputValue);
+            label.textContent = inputValue;
+
+            checkboxContainer.appendChild(checkbox);
+            checkboxContainer.appendChild(label);
+        }
+
+    });
+
+    document.getElementById('addCheckboxColor').addEventListener('click', function () {
+        const inputValueColor = document.getElementById('textInputColor').value;
+        const checkboxContainerColor = document.getElementById('checkboxColorContainer');
+        if (inputValueColor) {
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.name = 'listColor';
+            checkbox.value = inputValueColor;
+            checkbox.id = inputValueColor;
+
+            const label = document.createElement('label');
+            label.setAttribute('for', inputValueColor);
+            label.textContent = inputValueColor;
+
+            checkboxContainerColor.appendChild(checkbox);
+            checkboxContainerColor.appendChild(label);
+        }
+
+    });
+</script>

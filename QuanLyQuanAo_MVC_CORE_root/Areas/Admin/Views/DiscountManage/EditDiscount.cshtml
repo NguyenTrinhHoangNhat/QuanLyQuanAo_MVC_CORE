@@ -1,0 +1,47 @@
+
+@{
+    ViewData["Title"] = "AddProduct";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model QuanLyQuanAo_MVC_CORE.Models.Discount
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Chỉnh sửa mã giảm giá </h4>
+            <form class="forms-sample" action="EditDiscountSubmit" method="post" enctype="multipart/form-data">
+            <input type="text" value="@Model.Id" name="Id" hidden>
+                <div class="form-group">
+                    <label for="NamePro">Tên mã giảm giá </label>
+                    <input type="text" class="form-control" id="NamePro" placeholder="Nhập tên sản phẩm" value="@Model.NameDiscount" name="NameDiscount">
+                    <div class="text-danger">@Html.ValidationMessageFor(model => model.NameDiscount)</div>
+                </div>
+                <div class="form-group">
+                    <label for="NamePro">Tên CODE </label>
+                    <input type="text" class="form-control" id="NamePro" placeholder="Nhập tên sản phẩm" value="@Model.CodeName" name="CodeName">
+                    <div class="text-danger">@Html.ValidationMessageFor(model => model.CodeName)</div>
+                </div>
+                <div class="form-group">
+                    <label for="ProTypeId">Loại giảm giá</label>
+                    <select class="form-control" value="@Model.IsPercent" name="IsPercent" id="ProTypeId">
+                        @{
+                            if(Model.IsPercent == 0 ){
+                                <option selected value="0">%</option>
+                                <option value="1">Tiền VND</option>
+                            }else{
+                                <option  value="0">%</option>
+                                <option selected value="1">Tiền VND</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="NamePro">Giá Giảm (% - VND) </label>
+                    <input type="text" class="form-control" id="NamePro" placeholder="Nhập giá" value="@Model.Price" name="Price">
+                    <div class="text-danger">@Html.ValidationMessageFor(model => model.Price)</div>
+                </div>
+                <button type="submit" class="btn btn-primary mr-2">Chỉnh sửa sản phẩm</button>
+                <a href="~/Admin/ProductManage/Index" class="btn btn-light">Trở về</a>
+            </form>
+        </div>
+    </div>
+</div>

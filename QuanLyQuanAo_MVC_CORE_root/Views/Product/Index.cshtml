@@ -1,0 +1,307 @@
+@{
+    ViewData["Title"] = "Cart Page";
+     Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model QuanLyQuanAo_MVC_CORE.Models.Product;
+<style>
+    .quantity{
+        border: none;
+        width:35px;
+        font-size: 17px;
+    }
+</style>
+<div class="fixed_count-add hide-on-pc">
+    <div class="detail-info-count-add-count">
+        <i class="fa-solid fa-minus "></i>
+        <span>2</span>
+        <i class="fa-solid fa-plus "></i>
+    </div>
+    <button class="detail-info-count-add-btn" type="submit">Add to cart</button>
+</div>
+
+<!-- Bắt đầu nội dung -->
+<div class="container">
+    <div class="grid wide">
+        <div class="row">
+            <div class="col p-12">
+                <div class="pro-woocommerce">
+                    <ul class="pro-woocommerce-list">
+                        <li class="pro-woocommerce-item">
+                            <span href="#" class="pro-woocommerce-item-link">
+                                Home
+                            </span>
+                            /
+                        </li>
+                        <li class="pro-woocommerce-item">
+                            <span href="#" class="pro-woocommerce-item-link">
+                                Women
+                            </span>
+                            /
+                        </li>
+                        <li class="pro-woocommerce-item">
+                            <span href="#" class="pro-woocommerce-item-link">
+                                Pants
+                            </span>
+                            /
+                        </li>
+                        <li class="pro-woocommerce-item">
+                            <h5> Basic Colored Sweatpants With Elastic Hems</h5>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col p-12 m-12">
+                <div class="pro-product-detail">
+                    <div class="row no-gutters">
+                        <div class="col p-5 m-12">
+                            <div class="pro-product-detail-img">
+                                <div class="pro-product-detail-img-main"
+                                    style="background-image: url('../img/Product/@Model.ImgUrl');">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col p-7" style="padding: 10px 25px;">
+                            <div class="pro-product-detail-info">
+                                <h2 class="pro-product-detail-info-name">@Model.ProductName</h2>
+                                <div class="pro-product-detail-info-evaluate">
+                                    <div class="detail-info-evaluate-star">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="detail-info-evaluate-reviews">2 reviews</div>
+                                </div>
+                                <div class="pro-product-detail-info-price">
+                                    <span class="detail-info-price-new">@string.Format("{0:n0}", Model.Price) đ</span>
+                                </div>
+                                <div class="pro-product-detail-info-des">
+                                    @Model.Description
+                                </div>
+                                <form action="~/Cart/AddProductToCart" class="pro-product-detail-info-validate" method="post"
+                                    enctype="multipart/form-data">
+                                    <input type="text" value="@Model.Id" name="productId" hidden>
+                                    <input type="text" value="@Model.Price" name="price" hidden>
+                                    <div class="pro-product-detail-info-color">
+                                        Color:
+                                        <ul class="detail-info-color-list">
+                                        @{
+                                            var listColor = Model.ColorList.Split("-");
+                                            int countC = 0;
+                                            foreach(var item in listColor){
+                                                var color = item.Split("_");
+                                                <li class="detail-info-color-item @(countC == 0 ? "active" : "")" data-color="red"
+                                                    style="background-color: @color[1];">
+                                                </li>
+                                                countC++;
+                                            }
+                                        }
+                                        </ul>
+                                    </div>
+                                    <div class="pro-product-detail-info-size">
+                                        Size:
+                                        <ul class="detail-info-size-list">
+                                            @{
+                                            var listSize = Model.SizeList.Split("-");
+                                            int count = 0;
+                                            foreach(var item in listSize){
+                                                <li class="detail-info-size-item @(count == 0 ? "active" : "")">@item</li>
+                                                count++;
+                                            }
+                                        }
+                                            
+                                        </ul>
+                                    </div>
+                                    <div class="pro-product-detail-info-count-add hide-on-mobile">
+                                        <div class="detail-info-count-add-count" style="width:auto">
+                                            <span class="minus">
+                                            <i class="fa-solid fa-minus "></i>
+                                            </span>
+                                            <input style="text-align: center;" class="quantity" type="text" value="1" name="quantity">
+                                            <span class="plus">
+                                            <i class="fa-solid fa-plus "></i>
+
+                                            </span>
+                                        </div>
+                                        <button class="detail-info-count-add-btn" type="submit">Add to cart</button>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col p-2 hide-on-pc hide-on-mobile">
+                <h2 class="pro-recent-views-tilte">Recent Views</h2>
+                <div class="pro-recent-views">
+                    <div class="pro-recent-views-product">
+                        <div class="pro-recent-views-product-img"
+                            style="background-image:url(https://k4j3j2s7.rocketcdn.me/clotya/wp-content/uploads/2022/04/basic1-500x750.jpeg) ;">
+                        </div>
+                        <div class="pro-recent-views-product-content">
+                            <div class="recent-views-product-name">
+                                Ripped Wide-Leg ’90s Jeans
+                            </div>
+                            <div class="recent-views-product-price">
+                                <div class="recent-views-product-price-old">$25.00</div>
+                                <div class="recent-views-product-price-new">$12.00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pro-recent-views-product">
+                        <div class="pro-recent-views-product-img"
+                            style="background-image:url(https://k4j3j2s7.rocketcdn.me/clotya/wp-content/uploads/2022/04/basic1-500x750.jpeg) ;">
+                        </div>
+                        <div class="pro-recent-views-product-content">
+                            <div class="recent-views-product-name">
+                                Ripped Wide-Leg ’90s Jeans
+                            </div>
+                            <div class="recent-views-product-price">
+                                <div class="recent-views-product-price-old">$25.00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col p-12 m-12">
+                <div class="pro-product-detail-tabs">
+                    <div class="pro-product-detail-tab-item active">
+                        Description
+                    </div>
+                    <div class="pro-product-detail-tab-item ">
+                        Additional information
+                    </div>
+                </div>
+                <div class="pro-product-detail-tab-content">
+                    <div class="product-detail-tab-pane active">
+                        <p class="product-detail-tab-des">
+                            @Model.Description
+                        </p>
+                    </div>
+                    <div class="product-detail-tab-pane">
+                        <h3 class="product-detail-additional-name">Additional information</h3>
+                        <table class="product-detail-additional-table">
+                            <tr>
+                                <td class="name">Color</td>
+                                    <td class="list">
+                                     @{
+                                            var colors = Model.ColorList.Split("-");
+                                            foreach(var item in colors){
+                                                var color = item.Split("_");
+                                                @color[0] <span>&nbsp;</span>
+                                            }
+                                        }
+                                            </td>
+                            </tr>
+                            <tr>
+                                <td class="name">Size</td>
+                                 <td class="list">
+                                     @{
+                                            var sizes = Model.SizeList.Split("-");
+                                            foreach(var item in sizes){
+                                                @item <span>&nbsp;</span>
+                                            }
+                                        }
+                                            </td>
+                            </tr>
+                            <tr>
+                                <td class="name">Hãng sản phẩm</td>
+                                <td class="list">@ViewBag.brandProduct?.BrandName</td>
+                            </tr>
+                            <tr>
+                                <td class="name">Loại sản phẩm</td>
+                                <td class="list">@ViewBag.proTypeProduct?.ProductTypesName</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col p-12 m-12">
+                <div class="body-view-products">
+                    <h2 class="body-view-products-name">Recently Viewed Products</h2>
+                </div>
+            </div>
+            <div class="col p-12 m-12">
+                <div class="row">
+
+                    @{
+                        if(ViewBag.listProductRE != null && ViewBag.listProductRE is IEnumerable<object>){
+                            <div class="col p-12" style="display:flex;justify-content: center;align-items: center;font-size: 20px;">
+                                KHÔNG CÓ SẢN PHẨM NÀO TƯƠNG TỰ
+                            </div>
+                        }else{
+                            foreach(var item in ViewBag.listProductRE){
+                                <div class="col p-2-4 m-6">
+                                    <div class="body-background-products">
+                                        <div 
+                                            class="background-products-img" 
+                                            style="background-image: url('../img/Product/@item.ImgUrl');"
+                                        >
+                                        </div>
+                                        <div class="background-products-info">
+                                            <div class="products-info-start fz-1-6rem"><i class="fa-solid fa-star"></i> 1 review</div>
+                                            <div class="products-info-name fz-1-6rem"><a href="~/Product?idProduct=@item.Id" class="products-info-link">@item.ProductName</a> </div>
+                                            <div class="products-info-price">
+                                                <div class="products-info-price-new fz-1-6rem">@string.Format("{0:n0}", item.Price)</div>
+                                            </div>
+                                        </div>
+                                        <div class="background-products-shopping">
+                                            <div class="products-shopping-item active fz-1-6rem">
+                                                <i class="fa-solid fa-heart"></i>
+                                            </div>
+                                            <div class="products-shopping-item fz-1-6rem">
+                                                <i class="fa-solid fa-bag-shopping"></i>
+                                            </div>
+                                        </div>
+                                        <div class="products-shopping-discount fz-1-6rem">
+                                            -17%
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            }
+                            }
+
+                        }
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var span = document.querySelector('.detail-info-count-add-count .quantity');
+    var amount = @Model.Amout; 
+
+    function updateValue(value) {
+        if (value < 0) {
+            value = 0;
+        } else if (value > amount) {
+            value = amount;
+        }
+        span.value = value;
+    }
+
+    document.querySelector('.detail-info-count-add-count .minus').addEventListener('click', function() {
+        var value = parseInt(span.value, 10);
+        updateValue(value - 1);
+    });
+
+    document.querySelector('.detail-info-count-add-count .plus').addEventListener('click', function() {
+        var value = parseInt(span.value, 10);
+        updateValue(value + 1);
+    });
+});
+
+
+
+</script>

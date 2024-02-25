@@ -1,0 +1,50 @@
+
+@{
+    ViewData["Title"] = "AddProduct";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model QuanLyQuanAo_MVC_CORE.Models.User
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Thêm người dùng </h4>
+            <form class="forms-sample" action="AddUserSubmit" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="NamePro">Tên người dùng </label>
+                    <input type="text" class="form-control" id="NamePro" placeholder="vd: Nguyễn Văn A" name="Username">
+                    <div class="text-danger">@Html.ValidationMessageFor(model => model.Username)</div>
+                </div>
+                <div class="form-group">
+                    <label for="NamePro">Email </label>
+                    <input type="text" class="form-control" id="NamePro" placeholder="vd: email@gmail.com" name="Email">
+                    <div class="text-danger">@Html.ValidationMessageFor(model => model.Email)</div>
+                </div>
+                <div class="form-group">
+                    <label for="NamePro">Số điện thoại </label>
+                    <input type="text" class="form-control" id="NamePro" placeholder="vd: 0123456789" name="PhoneNumber">
+                    <div class="text-danger">@Html.ValidationMessageFor(model => model.PhoneNumber)</div>
+                </div>
+                <div class="form-group">
+                    <label for="NamePro">Địa chỉ </label>
+                    <input type="text" class="form-control" id="NamePro" placeholder="vd: 123 nguyễn tất thành, q12, tp.hcm" name="AddressUser">
+                    <div class="text-danger">@Html.ValidationMessageFor(model => model.AddressUser)</div>
+                </div>
+                <div class="form-group">
+                    <label for="NamePro">Mật khẩu  </label>
+                    <input type="text" class="form-control" id="NamePro" placeholder="Nhập mật khẩu" name="Pass">
+                    <div class="text-danger">@Html.ValidationMessageFor(model => model.Pass)</div>
+                </div>
+                <div class="form-group">
+                    <label for="ProTypeId">Quyền</label>
+                    <select class="form-control" name="RoleId" id="ProTypeId">
+                        @foreach(var item in ViewBag.Roles ){
+                            <option value="@item.Id">@item.RoleName</option>
+                        }
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary mr-2">Thêm người dùng mới</button>
+                <a href="~/Admin/ProductManage/Index" class="btn btn-light">Trở về</a>
+            </form>
+        </div>
+    </div>
+</div>

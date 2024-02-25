@@ -1,0 +1,22 @@
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model QuanLyQuanAo_MVC_CORE.Models.ProductType
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Xóa thông tin loại sản phẩm</h4>
+            <form class="forms-sample" action="DeleteProductTypeSubmit" method="post" enctype="multipart/form-data">
+            <input type="text" value="@Model.Id" hidden name="Id">
+                <div class="form-group">
+                    <label for="NamePro">Tên loại Sản phẩm</label>
+                    <input type="text" class="form-control" id="NamePro" placeholder="Nhập tên sản phẩm" name="ProductTypesName" value="@Model.ProductTypesName">
+                    <div class="text-danger">@Html.ValidationMessageFor(model => model.ProductTypesName)</div>
+                </div>
+                <button type="submit" class="btn btn-primary mr-2">Xóaloại sản phẩm </button>
+                <a href="~/Admin/ProductTypeManage/Index" class="btn btn-light">Trở về</a>
+            </form>
+        </div>
+    </div>
+</div>

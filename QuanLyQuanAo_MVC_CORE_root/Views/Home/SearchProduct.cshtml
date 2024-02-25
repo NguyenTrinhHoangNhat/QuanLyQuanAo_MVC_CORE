@@ -1,0 +1,47 @@
+@{
+    ViewData["Title"] = "Home Page";
+     Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<QuanLyQuanAo_MVC_CORE.Models.Product>
+<div class="container">
+    <div class="grid wide">
+        <h1>Bạn đang tìm kiếm ' @ViewBag.key '</h1>
+        <div class="row" style="margin-top:20px">
+            <div class="col p-12">
+                <div class="row">
+                    @foreach(var item in Model){
+                        <div class="col p-3 m-6">
+                            <div class="body-background-products">
+                                <div 
+                                    class="background-products-img" 
+                                    style="background-image: url('../img/Product/@item.ImgUrl');"
+                                >
+                                </div>
+                                <div class="background-products-info">
+                                    <div class="products-info-start fz-1-6rem"><i class="fa-solid fa-star"></i> 1 review</div>
+                                    <div class="products-info-name fz-1-6rem"><a href="~/Product?idProduct=@item.Id" class="products-info-link">@item.ProductName</a> </div>
+                                    <div class="products-info-price">
+                                        <div class="products-info-price-new fz-1-6rem">@string.Format("{0:n0}", item.Price)</div>
+                                    </div>
+                                </div>
+                                <div class="background-products-shopping">
+                                    <div class="products-shopping-item active fz-1-6rem">
+                                        <i class="fa-solid fa-heart"></i>
+                                    </div>
+                                    <div class="products-shopping-item fz-1-6rem">
+                                        <i class="fa-solid fa-bag-shopping"></i>
+                                    </div>
+                                </div>
+                                <div class="products-shopping-discount fz-1-6rem">
+                                    -17%
+                                </div>
+                                
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    

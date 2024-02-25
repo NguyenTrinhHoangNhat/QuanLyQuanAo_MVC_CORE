@@ -1,0 +1,457 @@
+@{
+    ViewData["Title"] = "Cart Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model QuanLyQuanAo_MVC_CORE.Models.User
+<!-- Bắt đầu nội dung -->
+<div class="container">
+    <div class="grid wide">
+        <div class="row">
+            <div class="col p-3 m-12">
+                <!-- Thông tin chọn phần cho người dùng -->
+                <div class="info-navbar">
+                    <!-- Danh sách của phần chọn cho người dùng -->
+                    <ul class="info-navbar-list">
+                        <li class="info-navbar-item-info">
+                            <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80"
+                                alt="user img" class="info-navbar-img">
+                            <div class="info-navbar-title">
+                                <div class="wellcome">wellcome back,</div>
+                                <div class="UserName">Felix</div>
+                            </div>
+                        </li>
+                        <li class="info-navbar-item active">
+                            Dashboard
+                        </li>
+                        <li class="info-navbar-item">
+                            <a href="~/Account/ListOrder">
+                                Orders
+                            </a>
+                        </li>
+                        <li class="info-navbar-item">
+                            Download
+                        </li>
+                        <li class="info-navbar-item">
+                            Address
+                        </li>
+                        <li class="info-navbar-item">
+                            Account details
+                        </li>
+                        <li class="info-navbar-item">
+                            Wishlist
+                        </li>
+                        <li class="info-navbar-item-logout">
+                            Logout
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="col p-9 m-12">
+                <!-- Thông tin nội dung chọn phần cho người dùng -->
+                <div class="info-content">
+                    <!-- danh sách nội dung từng thành phần chọn của người dùng -->
+                    <div class="info-content-item active">
+                        <h1 class="info-content-not-update">Opps,We haven't upgraded this feature yet, come back later
+                        </h1>
+                    </div>
+                    <div class="info-content-item">
+                        <!-- nếu không có order thì dùng -->
+                        <!-- <div class="info-content-order-no-pro">
+                                <span href="#" class="info-content-btn-order">Browse products</span>
+                                <div class="info-content-order-des">No order has been made yet</div>
+                            </div> -->
+                        <!-- Nếu có order thì dùng -->
+                        <div class="info-content-order-has-pro">
+                            <div class="info-content-order-has-pro-item">
+                                @{
+                                    if (ViewBag.ListOrder.Count == 0)
+                                    {
+                                        <div style="text-align: center; font-size:28px">
+                                            Chưa có đơn hàng nào tại đây
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        @foreach (var item in ViewBag.ListOrder)
+                                        {
+                                            <div class="row" style="margin-top:30px">
+                                                <div class="col p-12 m-12">
+                                                    <h4 style="font-size: 22px; padding:8px 0">Mã hóa đơn @item.Id</h4>
+                                                    <div class="cart-has-products">
+                                                        <div class="cart-has-products-title">
+                                                            <ul class="has-products-title-list">
+                                                                <li class="has-products-title-item">Products</li>
+                                                                <li class="has-products-title-item hide-on-mobile">Price</li>
+                                                                <li class="has-products-title-item">Quantity</li>
+                                                                <li class="has-products-title-item">Subtotal</li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="cart-has-products-pro">
+                                                            @foreach (var itemPro in ViewBag.ListProduct)
+                                                            {
+                                                                if (itemPro.CartDetail.IdCart == item.Id)
+                                                                {
+
+                                                                    <div class="has-products-pro-item" >
+                                                                        <div class="has-products-pro-item-img-name">
+                                                                            <img src="~/img/Product/@itemPro.Product.ImgUrl"
+                                                                                class="hide-on-mobile" alt="">
+                                                                            <div class="pro_item-name-type">
+                                                                                <h4 class="name">@itemPro.Product.ProductName</h4>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="has-products-pro-item-price">
+                                                                            <div class="pro-item-price hide-on-mobile">
+                                                                                @itemPro.Product.Price đ
+                                                                            </div>
+                                                                            <span class="pro-item-quantity">
+                                                                                <span>@itemPro.CartDetail.Quantity</span>
+                                                                            </span>
+                                                                            <div class="pro-item-subtotal">@itemPro.CartDetail.TotalMoney đ
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                }
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        }
+
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-content-item">
+                        <h1 class="info-content-not-update">Opps,We haven't upgraded this feature yet, come back later
+                        </h1>
+                    </div>
+                    <div class="info-content-item">
+                        <form action="" method="post" enctype="multipart/form-data" class="checkout-form-validate"
+                            class="account-page-login">
+                            <h2 class="form-validate-title">Address</h2>
+                            <div class="row no-gutters">
+                                <div class="col p-12 m-12">
+                                    <label for="" class="form-validate-name">First name *</label>
+                                    <input type="text" class="form-validate-input">
+                                </div>
+                                <div class="col p-12 m-12">
+                                    <label for="" class="form-validate-name">Last name *</label>
+                                    <input type="text" class="form-validate-input">
+                                </div>
+                                <div class="col p-12 m-12">
+                                    <label for="" class="form-validate-name">Company name (optional)</label>
+                                    <input type="text" class="form-validate-input">
+                                </div>
+                                <div class="col p-12 m-12">
+                                    <label for="" class="form-validate-name">Country / Region *</label>
+                                    <select>
+                                        <option value="">Viet Nam</option>
+                                        <option value="">Thai land</option>
+                                        <option value="">China </option>
+                                    </select>
+                                </div>
+                                <div class="col p-12 m-12">
+                                    <label for="" class="form-validate-name">Street address *</label>
+                                    <input type="text" class="form-validate-input">
+                                </div>
+                                <div class="col p-12 m-12">
+                                    <label for="" class="form-validate-name">Town / City *</label>
+                                    <input type="text" class="form-validate-input">
+                                </div>
+                                <div class="col p-12 m-12">
+                                    <label for="" class="form-validate-name">State</label>
+                                    <select>
+                                        <option value="">Viet Nam</option>
+                                        <option value="">Thai land</option>
+                                        <option value="">China </option>
+                                    </select>
+                                </div>
+                                <div class="col p-12 m-12">
+                                    <label for="" class="form-validate-name">ZIP Code *</label>
+                                    <input type="text" class="form-validate-input">
+                                </div>
+                                <div class="col p-12 m-12">
+                                    <label for="" class="form-validate-name">Phone *</label>
+                                    <input type="text" class="form-validate-input">
+                                </div>
+                                <div class="col p-12 m-12">
+                                    <label for="" class="form-validate-name">Email address *</label>
+                                    <input type="text" class="form-validate-input">
+                                </div>
+                                <div class="col p-12 m-12">
+                                    <div class="create-account">
+                                        <input type="checkbox" id="create-account">
+                                        <label for="create-account" class="form-validate-name"> Create an
+                                            account?</label>
+                                        <div class="create-account-input">
+                                            <div class="row no-gutters">
+                                                <div class="col p-12 m-12">
+                                                    <label for="" class="form-validate-name">Account username *</label>
+                                                    <input type="text" class="form-validate-input">
+                                                </div>
+                                                <div class="col p-12 m-12">
+                                                    <label for="" class="form-validate-name">Create Account password
+                                                        *</label>
+                                                    <input type="password" class="form-validate-input">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col p-12 m-12">
+                                    <div class="diferent-address">
+                                        <input type="checkbox" id="diferent-address">
+                                        <label for="diferent-address" class="form-validate-name"> Ship to a different
+                                            address?</label>
+                                        <div class="diferent-address-input">
+                                            <div class="row no-gutters">
+                                                <div class="col p-12 m-12">
+                                                    <label for="" class="form-validate-name">First name *</label>
+                                                    <input type="text" class="form-validate-input">
+                                                </div>
+                                                <div class="col p-12 m-12">
+                                                    <label for="" class="form-validate-name">Last name *</label>
+                                                    <input type="text" class="form-validate-input">
+                                                </div>
+                                                <div class="col p-12 m-12">
+                                                    <label for="" class="form-validate-name">Company name
+                                                        (optional)</label>
+                                                    <input type="text" class="form-validate-input">
+                                                </div>
+                                                <div class="col p-12 m-12">
+                                                    <label for="" class="form-validate-name">Country / Region *</label>
+                                                    <select>
+                                                        <option value="">Viet Nam</option>
+                                                        <option value="">Thai land</option>
+                                                        <option value="">China </option>
+                                                    </select>
+                                                </div>
+                                                <div class="col p-12 m-12">
+                                                    <label for="" class="form-validate-name">Street address *</label>
+                                                    <input type="text" class="form-validate-input">
+                                                </div>
+                                                <div class="col p-12 m-12">
+                                                    <label for="" class="form-validate-name">Town / City *</label>
+                                                    <input type="text" class="form-validate-input">
+                                                </div>
+                                                <div class="col p-12 m-12">
+                                                    <label for="" class="form-validate-name">State</label>
+                                                    <select>
+                                                        <option value="">Viet Nam</option>
+                                                        <option value="">Thai land</option>
+                                                        <option value="">China </option>
+                                                    </select>
+                                                </div>
+                                                <div class="col p-12 m-12">
+                                                    <label for="" class="form-validate-name">ZIP Code *</label>
+                                                    <input type="text" class="form-validate-input">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col p-12 m-12">
+                                    <label for="" class="form-validate-name">Order notes (optional)</label>
+                                    <textarea type="text" class="form-validate-input"></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="form-validate-submit-btn">Update Address</button>
+                        </form>
+                    </div>
+                    <div class="info-content-item">
+                        <form action="/Account/SubmitInfo" method="post" enctype="multipart/form-data"
+                            class="checkout-form-validate" class="account-page-login">
+                            <h2 class="form-validate-title">User Info</h2>
+                            <div class="row ">
+                                <input type="text" value="@Model.Id" name="Id" hidden>
+                                <input type="text" value="@Model.RoleId" name="RoleId" hidden>
+                                <div class="col p-12 m-12">
+                                    <label for="" class="form-validate-name">Username</label>
+                                    <input type="text" class="form-validate-input" value="@Model.Username"
+                                        name="Username">
+                                </div>
+                                <div class="col p-6 m-12">
+                                    <label for="" class="form-validate-name">Email Address</label>
+                                    <input type="email" class="form-validate-input" value="@Model.Email" name="Email">
+                                </div>
+                                <div class="col p-6 m-12">
+                                    <label for="" class="form-validate-name">Phone number</label>
+                                    <input type="text" class="form-validate-input" value="@Model.PhoneNumber"
+                                        name="PhoneNumber">
+                                </div>
+                                <div class="col p-12 m-12">
+                                    <label for="" class="form-validate-name">Mật khẩu</label>
+                                    <input type="text" class="form-validate-input" value="@Model.Pass" name="Pass">
+                                </div>
+                                <div class="col p-12 m-12">
+                                    <label for="" class="form-validate-name">Address</label>
+                                    <input type="text" class="form-validate-input" value="@Model.AddressUser"
+                                        name="AddressUser">
+                                </div>
+                            </div>
+                            <button type="submit" class="form-validate-submit-btn">Update Info</button>
+                        </form>
+                    </div>
+                    <div class="info-content-item">
+                        <!-- nếu không có wishlist thì dùng -->
+                        <!-- <div class="info-content-order-no-pro">
+                                <span href="#" class="info-content-btn-order">Browse products</span>
+                                <div class="info-content-order-des">No wishlist has been add yet</div>
+                            </div> -->
+                        <!-- Nếu có order thì dùng -->
+                        <div class="info-content-order-has-pro">
+                            <div class="info-content-order-has-pro-item">
+                                <div class="cart-has-products-title">
+                                    <ul class="has-products-title-list">
+                                        <li class="has-products-title-item">Products</li>
+                                        <li class="has-products-title-item ">Price</li>
+                                    </ul>
+                                </div>
+                                <div class="cart-has-products-pro">
+                                    <div class="has-products-pro-item">
+                                        <span class="has-products-pro-item-del">
+                                            <i class="fa-solid fa-x"></i>
+                                        </span>
+                                        <div class="has-products-pro-item-img-name">
+                                            <img src="https://k4j3j2s7.rocketcdn.me/clotya/wp-content/uploads/2022/04/basic1-500x750.jpeg"
+                                                class="hide-on-mobile" alt="">
+                                            <div class="pro_item-name-type">
+                                                <h4 class="name">Basic Colored Sweatpants With Elastic Hems Basic
+                                                    Colored Sweatpants With Elastic Hems Basic Colored Sweatpants With
+                                                    Elastic Hems</h4>
+                                                <p class="type hide-on-mobile">
+                                                    Color: <span class="color">Black </span>-
+                                                    Size: <span class="size">M </span>-
+                                                    Amount: <span class="amount">2</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="has-products-pro-item-price">
+                                            <div class="pro-item-price">$19.00</div>
+                                        </div>
+                                    </div>
+                                    <div class="has-products-pro-item">
+                                        <span class="has-products-pro-item-del">
+                                            <i class="fa-solid fa-x"></i>
+                                        </span>
+                                        <div class="has-products-pro-item-img-name">
+                                            <img src="https://k4j3j2s7.rocketcdn.me/clotya/wp-content/uploads/2022/04/basic1-500x750.jpeg"
+                                                class="hide-on-mobile" alt="">
+                                            <div class="pro_item-name-type">
+                                                <h4 class="name">Basic Colored Sweatpants With Elastic Hems Basic
+                                                    Colored Sweatpants With Elastic Hems Basic Colored Sweatpants With
+                                                    Elastic Hems</h4>
+                                                <p class="type hide-on-mobile">
+                                                    Color: <span class="color">Black </span>-
+                                                    Size: <span class="size">M </span>-
+                                                    Amount: <span class="amount">2</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="has-products-pro-item-price">
+                                            <div class="pro-item-price">$19.00</div>
+                                        </div>
+                                    </div>
+                                    <div class="has-products-pro-item">
+                                        <span class="has-products-pro-item-del">
+                                            <i class="fa-solid fa-x"></i>
+                                        </span>
+                                        <div class="has-products-pro-item-img-name">
+                                            <img src="https://k4j3j2s7.rocketcdn.me/clotya/wp-content/uploads/2022/04/basic1-500x750.jpeg"
+                                                class="hide-on-mobile" alt="">
+                                            <div class="pro_item-name-type">
+                                                <h4 class="name">Basic Colored Sweatpants With Elastic Hems Basic
+                                                    Colored Sweatpants With Elastic Hems Basic Colored Sweatpants With
+                                                    Elastic Hems</h4>
+                                                <p class="type hide-on-mobile">
+                                                    Color: <span class="color">Black </span>-
+                                                    Size: <span class="size">M </span>-
+                                                    Amount: <span class="amount">2</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="has-products-pro-item-price">
+                                            <div class="pro-item-price">$19.00</div>
+                                        </div>
+                                    </div>
+                                    <div class="has-products-pro-item">
+                                        <span class="has-products-pro-item-del">
+                                            <i class="fa-solid fa-x"></i>
+                                        </span>
+                                        <div class="has-products-pro-item-img-name">
+                                            <img src="https://k4j3j2s7.rocketcdn.me/clotya/wp-content/uploads/2022/04/basic1-500x750.jpeg"
+                                                class="hide-on-mobile" alt="">
+                                            <div class="pro_item-name-type">
+                                                <h4 class="name">Basic Colored Sweatpants With Elastic Hems Basic
+                                                    Colored Sweatpants With Elastic Hems Basic Colored Sweatpants With
+                                                    Elastic Hems</h4>
+                                                <p class="type hide-on-mobile">
+                                                    Color: <span class="color">Black </span>-
+                                                    Size: <span class="size">M </span>-
+                                                    Amount: <span class="amount">2</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="has-products-pro-item-price">
+                                            <div class="pro-item-price">$19.00</div>
+                                        </div>
+                                    </div>
+                                    <div class="has-products-pro-item">
+                                        <span class="has-products-pro-item-del">
+                                            <i class="fa-solid fa-x"></i>
+                                        </span>
+                                        <div class="has-products-pro-item-img-name">
+                                            <img src="https://k4j3j2s7.rocketcdn.me/clotya/wp-content/uploads/2022/04/basic1-500x750.jpeg"
+                                                class="hide-on-mobile" alt="">
+                                            <div class="pro_item-name-type">
+                                                <h4 class="name">Basic Colored Sweatpants With Elastic Hems Basic
+                                                    Colored Sweatpants With Elastic Hems Basic Colored Sweatpants With
+                                                    Elastic Hems</h4>
+                                                <p class="type hide-on-mobile">
+                                                    Color: <span class="color">Black </span>-
+                                                    Size: <span class="size">M </span>-
+                                                    Amount: <span class="amount">2</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="has-products-pro-item-price">
+                                            <div class="pro-item-price">$19.00</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    //Thay đổi giữa các trang qua lại với nhay 
+    var navTabs = document.querySelectorAll(".info-navbar-item")
+    var navPanes = document.querySelectorAll(".info-content-item")
+    function moveTabsNav() {
+        navTabs.forEach((tab, index) => {
+            const pane = navPanes[index]
+            tab.onclick = function () {
+                console.log(tab);
+                $(".info-navbar-item.active").classList.remove("active");
+                $(".info-content-item.active").classList.remove("active");
+                this.classList.add("active")
+                pane.classList.add("active")
+            }
+        })
+    }
+    //hiện thanh search bản mobile
+    var searchMobilebtn = document.querySelector(".navbar-mobile-item-search")
+    searchMobilebtn.addEventListener("click", () => {
+        mobileSearch.classList.toggle("active")
+    })
+    moveTabsNav()
+</script>

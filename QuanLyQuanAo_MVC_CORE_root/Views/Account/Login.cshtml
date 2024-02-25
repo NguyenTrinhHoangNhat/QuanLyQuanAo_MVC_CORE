@@ -1,0 +1,34 @@
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <div class="grid wide">
+        <div class="row">
+            <div class="col p-12 m-12" style="display: flex;justify-content: center;">
+                <form action="~/Account/LoginSubmit" method="post" enctype="multipart/form-data" class="checkout-form-validate"
+                    class="account-page-login">
+                    <h2 class="form-validate-title">Login</h2>
+                    <div class="row no-gutters">
+                        <div class="col p-12 m-12">
+                            <label for="" class="form-validate-name">email address *</label>
+                            <input type="text" class="form-validate-input" name="email">
+                        </div>
+                        <div class="col p-12 m-12">
+                            <label for="" class="form-validate-name">Password *</label>
+                            <input type="text" class="form-validate-input" name="password">
+                        </div>
+                    </div>
+                    @{
+                        if(!String.IsNullOrEmpty(ViewBag.error)){
+                            <span style="color:red;font-size: 17px;font-style: italic;">
+                                @ViewBag.error
+                            </span>
+                        }
+                    }
+                    <button type="submit" class="form-validate-submit-btn">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+@{
+    ViewData["Title"] = "AddProduct";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model QuanLyQuanAo_MVC_CORE.Models.Product
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Xoá sản phẩm</h4>
+            <form class="forms-sample" action="DeleteProductSubmit" method="post" enctype="multipart/form-data">
+                <input type="text" value="@Model.Id" name="Id" hidden>
+                <div class="form-group">
+                    <label for="NamePro">Tên Sản phẩm</label>
+                    <input type="text" class="form-control" id="NamePro" placeholder="Nhập tên sản phẩm"
+                        value="@Model.ProductName" name="ProductName">
+                    <div class="text-danger">@Html.ValidationMessageFor(model => model.ProductName)</div>
+                </div>
+                <button type="submit" class="btn btn-primary mr-2">Xóa sản phẩm</button>
+                <a href="~/Admin/ProductManage/Index" class="btn btn-light">Trở về</a>
+            </form>
+        </div>
+    </div>
+</div>
+

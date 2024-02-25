@@ -1,0 +1,22 @@
+
+@{
+    ViewData["Title"] = "AddProduct";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model QuanLyQuanAo_MVC_CORE.Models.User
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Xóa người dùng </h4>
+            <form class="forms-sample" action="DeleteUserSubmit" method="post" enctype="multipart/form-data">
+                <input type="text" value="@Model.Id" name="uid" hidden>
+                <div class="form-group">
+                    <label for="NamePro">Tên người dùng </label>
+                    <input type="text" class="form-control" id="NamePro" name="Username" value="@Model.Username">
+                </div>
+                <button type="submit" class="btn btn-primary mr-2">Xóa người dùng này</button>
+                <a href="~/Admin/User/Index" class="btn btn-light">Trở về</a>
+            </form>
+        </div>
+    </div>
+</div>

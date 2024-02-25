@@ -1,0 +1,26 @@
+
+@{
+    ViewData["Title"] = "AddProduct";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model QuanLyQuanAo_MVC_CORE.Models.Brand
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Thêm hãng</h4>
+            <form class="forms-sample" action="AddBrandSubmit" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="NamePro">Tên hãng</label>
+                    <input type="text" class="form-control" id="NamePro" placeholder="Nhập tên sản phẩm" name="BrandName">
+                    <div class="text-danger">@Html.ValidationMessageFor(model => model.BrandName)</div>
+                </div>
+                <div class="form-group">
+                    <label>Ảnh hãng</label>
+                    <input type="file" name="brandImg" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary mr-2">Thêm hãng mới</button>
+                <a href="~/Admin/ProductManage/Index" class="btn btn-light">Trở về</a>
+            </form>
+        </div>
+    </div>
+</div>

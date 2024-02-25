@@ -1,0 +1,356 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Phần icon của trang web -->
+    <link rel="icon" href="~/img/iconLogo.png">
+    <!-- Phần font chữ cho trang web -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost&display=swap" rel="stylesheet">
+    <!-- Phần định dạng grid System -->
+    <!-- <link rel="stylesheet" href="~/css/grid.css"> -->
+    <!-- Phần frontawesome -->
+    <link rel="stylesheet" href="~/fonts/fontawesome-free-6.2.1-web/css/all.css">
+    <!-- Phàn nền css của trang -->
+    <!-- <link rel="stylesheet" href="~/css/base.css"> -->
+    <!-- phần css chính cho trang -->
+    <link rel="stylesheet" href="~/css/style.css">
+    <!-- Phần responsive -->
+    <!-- <link rel="stylesheet" href="~/css/responsive.css"> -->
+    <title>Clotya - Home</title>
+</head>
+
+<body>
+    <input type="checkbox" id="menu-model" hidden class="menu-model-check">
+    <input type="checkbox" id="menu-model-filter" hidden class="menu-model-filer-check">
+    <label for="menu-model" class="model-over-play"></label>
+    <label for="menu-model-filter" class="model-filter-over-play"></label>
+    <!-- Bắt đầu phần header -->
+    <header class="header">
+        <!-- Phần giới thiệu trên thanh header -->
+        <div class="header-introduce hide-on-mobile">
+            <div class="grid wide">
+                <div class="row no-gutters">
+                    <div class="col p-12">
+                        <p class="header-introduce-info fz-1-2rem line-height-2-4rem">
+                            SUMMER SALE FOR ALL SWIM SUITS AND FREE EXPRESS INTERNATIONAL DELIVERY - OFF 50%! <a
+                                href="#" class="header-intoduce-link">SHOP NOW</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Kết thúc phần giới thiệu -->
+
+        <!-- Phần navbar trên thanh header-->
+        <nav class="header-navbar">
+            <div class="grid wide" style="display: flex; justify-content: space-between;">
+                <!--icon Bar, logo , navbar -->
+                <div class="header-navbar-nav display__flex">
+                    <label for="menu-model" class="header-navbar-nav-icon fz-2rem line-height-3rem">
+                        <i class="fa-solid fa-bars header-navbar-iconnav "></i>
+                    </label>
+                    <div class="header-navbar-img">
+                        <img src="~/img/logo.png" alt="logo">
+                    </div>
+                    <ul class="header-navbar-list">
+                        <li class="header-navbar-item ">
+                            <a href="/Home" class="header-navbar-item-link">HOME</a></i>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- phần thông tin icon user -->
+                <div class="header-navbar-user">
+                    @if (!String.IsNullOrEmpty(@ViewContext.HttpContext.Session.GetString("Username")))
+                    {
+                        <a href="~/Account/Profile">
+                            <h4>Hi, @ViewContext.HttpContext.Session.GetString("Username")</h4>
+                        </a>
+                        <a href="~/Account/Logout">Đăng Xuất</a>
+                    }
+                    else
+                    {
+                        <a href="~/Account/Login">Đăng Nhập</a>
+                        <a href="~/Account/Register">Đăng Ký</a>
+                    }
+                    <span class="header-navbar-icon-search " style="display:inline-block">
+                        Tìm kiếm
+                    </span>
+                    <a href="~/Cart/Index" class="header-navbar-cart">
+                        <a href="/Cart/Index" style="" class="header-navbar-cart-icon">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </a>
+                    </a>
+
+                </div>
+                <!-- Kết thúc phần thông tin icon user -->
+            </div>
+
+            <!-- Phần thanh search -->
+            <div class="grid wide hide-on-mobile">
+                <div class="row">
+                    <div class="col p-12">
+                        <div class="header-input-search bg_white boder-gray">
+                            <form action="/Home/SearchProduct" method="post" style="display: block;width:100%">
+                                <div style="display:flex">
+
+                                    <input type="text" name="key" placeholder="Search here!">
+                                    <button type="submit"
+                                        class="header-input-search-btn align__item-center fz-1-6rem">Search<i
+                                            class="fa-solid fa-magnifying-glass"></i></button>
+                                </div>
+                            </form>
+                            <span class="header-input-search-close display__flex-center"><i
+                                    class="fa-solid fa-x"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Kết thúc phần thanh search -->
+        </nav>
+        <!-- Kết thúc Phần navbar trên thanh header-->
+
+        <!-- Bắt đầu thanh search mobile -->
+        <div class="mobile-search">
+            <input type="text" placeholder="Search your favorite product...">
+            <a hreft="#" class="mobile-search-btn">Search <i class="fa-solid fa-magnifying-glass"></i></a>
+        </div>
+        <!-- kết thúc thanh search mobile -->
+
+    </header>
+    <!-- Kết thúc phần header -->
+    <!-- bắt đầu phần navbar mobile -->
+    <div class="navbar-mobile hide-on-pc">
+        <ul class="navbar-mobile-list">
+            <li class="navbar-mobile-item">
+                <a href="#" class="navbar-mobile-item-link">
+                    <i class="fa-solid fa-box-archive"></i>
+                    Home
+                </a>
+            </li>
+            <li class="navbar-mobile-item">
+                <label for="menu-model-filter" class="navbar-mobile-item-link">
+                    <i class="fa-solid fa-bars"></i>
+                    Filter
+                </label>
+            </li>
+            <li class="navbar-mobile-item">
+                <a href="#" class="navbar-mobile-item-link navbar-mobile-item-search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    Search
+                </a>
+            </li>
+            <li class="navbar-mobile-item">
+                <a href="#" class="navbar-mobile-item-link">
+                    <i class="fa-regular fa-heart"></i>
+                    Wishlist
+                </a>
+            </li>
+            <li class="navbar-mobile-item">
+                <a href="#" class="navbar-mobile-item-link">
+                    <i class="fa-regular fa-user"></i>
+                    Account
+                </a>
+            </li>
+        </ul>
+
+    </div>
+    <!-- Kết thúc phần navbar mobile -->
+
+    <!-- Thanh menu phụ kế trái -->
+    <nav class="model-menu bg_white">
+        <div class="model-menu-logo align__item-center">
+            <a href="#" class="model-menu-logo-link"><img src="~/img/logo.png" alt=""></a>
+            <label for="menu-model" class="bg_gray-light text_dark "><i class="fa-solid fa-x fz-2rem"></i></label>
+        </div>
+        <div class="model-main-menu">
+            <h2 class="model-main-menu-name">Main Menu</h2>
+            <ul class="main-menu-list">
+                <li class="line-height-2rem main-menu-item">
+                    <a href="#" class="main-menu-item-link">Home</a>
+                    <i class="fa-solid fa-chevron-down lv1"></i>
+                    <ul class="main-subMenu-list">
+                        <li class="line-height-2rem main-subMenu-item">
+                            <a href="#" class="main-subMenu-item-link">Home 1</a>
+                        </li>
+                        <li class="line-height-2rem main-subMenu-item">
+                            <a href="#" class="main-subMenu-item-link">Home 1</a>
+                            <i class="fa-solid fa-chevron-down lv2"></i>
+                            <ul class="main-subMenu-list-lv2">
+                                <li class="line-height-2rem main-subMenu-item-lv2">
+                                    <a href="#" class="main-subMenu-item-lv2-link">Home 2</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="line-height-2rem main-subMenu-item">
+                            <a href="#" class="main-subMenu-item-link">Home 1</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="line-height-2rem main-menu-item">
+                    <a href="#" class="main-menu-item-link">Home</a>
+                </li>
+            </ul>
+        </div>
+        <div class="model-main-menu">
+            <h2 class="model-main-menu-name">Categories</h2>
+            <ul class="main-menu-list">
+                <li class="line-height-2rem main-menu-item ">
+                    <a href="#" class="main-menu-item-link">Home</a>
+                    <i class="fa-solid fa-chevron-down lv1"></i>
+                    <ul class="main-subMenu-list active">
+                        <li class="line-height-2rem main-subMenu-item">
+                            <a href="#" class="main-subMenu-item-link">Home 1</a>
+                        </li>
+                        <li class="line-height-2rem main-subMenu-item">
+                            <a href="#" class="main-subMenu-item-link">Home 1</a>
+                            <i class="fa-solid fa-chevron-down lv2"></i>
+                            <ul class="main-subMenu-list-lv2">
+                                <li class="line-height-2rem main-subMenu-item-lv2">
+                                    <a href="#" class="main-subMenu-item-lv2-link">Home 2</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="line-height-2rem main-subMenu-item">
+                            <a href="#" class="main-subMenu-item-link">Home 1</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="line-height-2rem main-menu-item">
+                    <a href="#" class="main-menu-item-link">Home</a>
+                    <span class="main-menu-item-tag text_white " style="background-color: green;">HOT</span>
+                </li>
+            </ul>
+        </div>
+        <div class="model-main-coppyright fz-1-6rem">
+            Copyright 2022 © Clotya WordPress Theme. All right reserved. Powered by KLBTheme.
+        </div>
+    </nav>
+    <!-- Kết thúc thanh menu phụ -->
+
+    <div class="main">
+        @RenderBody();
+    </div>
+    <!-- Kết thúc phần nội dung chính  -->
+    <div class="sub-footer">
+        <div class="grid wide">
+            <div class="row">
+                <div class="col p-6 m-12">
+                    <h3 class="sub-footer-name">Get our emails for info on new items, sales and more.</h2>
+                        <p class="sub-footer-des">We'll email you a voucher worth £10 off your first order over £50.</p>
+                        <div class="sub-footer-emailadress ">
+                            <input type="email" placeholder="Email Adress">
+                            <button class="sub-footer-emailadress-btn">Subscribe</button>
+                        </div>
+                        <p class="sub-footer-til">By subscribing you agree to our Terms & Conditions and Privacy &
+                            Cookies Policy.</p>
+                </div>
+                <div class="col p-6 m-12">
+                    <h2 class="sub-footer-name">Need help? <br>(+800) 1234 5678 90</h2>
+                    <p class="sub-footer-des">We'll email you a voucher worth £10 off your first order over £50.</p>
+                    <div class="sub-footer-download align__item-center">
+                        <span class="sub-footer-download-link" href="#">
+                            <img src="~/img/app-store.png" alt="">
+                        </span>
+                        <span class="sub-footer-download-link" href="#">
+                            <img src="~/img/google-play.png" alt="">
+                        </span>
+                    </div>
+                    <p class="sub-footer-til">Shopping App: Try our View in Your Room feature, manage registries and
+                        save payment info.</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="grid wide">
+            <div class="row">
+                <div class="col p-3 m-12">
+                    <img src="~/img/logo.png" alt="" class="footer-logo">
+                    <div class="footer-des">Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas
+                        accumsan lacus vel facilisis in termapol.</div>
+                    <div class="footer-contact">(+800) 1234 5678 90 – info@example.com</div>
+                </div>
+                <div class="col p-3 m-12">
+                    <h2 class="footer-name">Infomation</h2>
+                    <ul class="footer-list">
+                        <li class="footer-item fz-1-6rem line-height-2rem "><a href=""
+                                class="text_dark footer-item-link">About us</a></li>
+                        <li class="footer-item fz-1-6rem line-height-2rem "><a href=""
+                                class="text_dark footer-item-link">Privacy Policy</a></li>
+                        <li class="footer-item fz-1-6rem line-height-2rem "><a href=""
+                                class="text_dark footer-item-link">Retuen Policy</a></li>
+                        <li class="footer-item fz-1-6rem line-height-2rem "><a href=""
+                                class="text_dark footer-item-link">Shipping Policy</a></li>
+                        <li class="footer-item fz-1-6rem line-height-2rem "><a href=""
+                                class="text_dark footer-item-link">Dropshiping</a></li>
+                    </ul>
+                </div>
+                <div class="col p-3 m-12">
+                    <h2 class="footer-name">Infomation</h2>
+                    <ul class="footer-list">
+                        <li class="footer-item fz-1-6rem line-height-2rem "><a href=""
+                                class="text_dark footer-item-link">About us</a></li>
+                        <li class="footer-item fz-1-6rem line-height-2rem "><a href=""
+                                class="text_dark footer-item-link">Privacy Policy</a></li>
+                        <li class="footer-item fz-1-6rem line-height-2rem "><a href=""
+                                class="text_dark footer-item-link">Retuen Policy</a></li>
+                        <li class="footer-item fz-1-6rem line-height-2rem "><a href=""
+                                class="text_dark footer-item-link">Shipping Policy</a></li>
+                        <li class="footer-item fz-1-6rem line-height-2rem "><a href=""
+                                class="text_dark footer-item-link">Dropshiping</a></li>
+                    </ul>
+                </div>
+                <div class="col p-3 m-12">
+
+                    <h2 class="footer-name">Infomation</h2>
+                    <ul class="footer-list">
+                        <li class="footer-item fz-1-6rem line-height-2rem "><a href=""
+                                class="text_dark footer-item-link">About us</a></li>
+                        <li class="footer-item fz-1-6rem line-height-2rem "><a href=""
+                                class="text_dark footer-item-link">Privacy Policy</a></li>
+                        <li class="footer-item fz-1-6rem line-height-2rem "><a href=""
+                                class="text_dark footer-item-link">Retuen Policy</a></li>
+                        <li class="footer-item fz-1-6rem line-height-2rem "><a href=""
+                                class="text_dark footer-item-link">Shipping Policy</a></li>
+                        <li class="footer-item fz-1-6rem line-height-2rem "><a href=""
+                                class="text_dark footer-item-link">Dropshiping</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row" style="margin: 70px 0 10px;">
+                <div class="col p-8">
+                    <div class="footer-coppyright display__flex">
+                        <p class="footer-coppyright">Copyright 2022 © Clotya WordPress Theme. All right reserved.
+                            Powered by KLBTheme.</p>
+                        <img src="~/img/cards.png" class="hide-on-mobile" alt="">
+                    </div>
+                </div>
+                <div class="col p-4">
+                    <ul class="footer-coppyright-list display__flex">
+                        <li class="footer-coppyright-item">Privacy Policy</li>
+                        <li class="footer-coppyright-item">Privacy Policy</li>
+                        <li class="footer-coppyright-item">Privacy Policy</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/js/main.js"></script>
+    <script>
+        //hiện thanh search bản mobile
+        var searchMobilebtn = document.querySelector(".navbar-mobile-item-search")
+        searchMobilebtn.addEventListener("click", () => {
+            mobileSearch.classList.toggle("active")
+        })
+    </script>
+</body>
+
+</html>

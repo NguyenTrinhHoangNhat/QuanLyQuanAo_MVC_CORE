@@ -1,0 +1,163 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+     Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<QuanLyQuanAo_MVC_CORE.Models.Product>
+<div class="container">
+    <div class="grid wide">
+        <div class="row ">
+            <div class="col p-12">
+                <div class="row no-gutters">
+                    <div class="col p-12 m-12">
+                        <div class="body-background-baner">
+                            <img src="~/img/banner-26.jpg" alt="">
+                            <span href="" class="body-background-baner-link"></span>
+                            <div class="body-background-baner-content">
+                                <div class="row">
+                                    <div class="col p-5">
+                                        <h2 class="baner-content-name">Plus-Size Style for Every Season</h2>
+                                        <p class="baner-content-des">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque nobis cum officia accusamus rerum error </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-gutters align__item-center ">
+                    <div class="col p-6 hide-on-mobile">
+                        <div class="body-background-filter">
+                            <p class="background-filter-show fz-1-6rem">Showing 17–32 of 72 results</p>
+                        </div>
+                    </div>
+                    <div class="col p-6 m-6 hide-on-pc">
+                        <label for="menu-model-filter" class="body-background-filter-setting">
+                            <i class="fa-solid fa-filter"></i> Filter
+                        </label>
+                    </div>
+                    <div class="col p-6 m-6">
+                        <div class="background-filter-sort-showing fz-1-6rem">
+                            <p class="hide-on-mobile">Show:</p>
+                            
+                            <div class="filter-sort-showing-select hide-on-mobile">
+                                <select value="" >
+                                    <option name="" id="">16 Items</option>
+                                    <option name="" id="">32 Items</option>
+                                    <option name="" id="">64 Items</option>
+                                </select>
+                            </div>
+                            <div class="filter-sort-showing-sort">
+                                <select value="" class="filter-sort-showing-sort">
+                                    <option name="" id="">Sort by popularyty</option>
+                                    <option name="" id="">Sort by popularyty</option>
+                                    <option name="" id="">Sort by popularyty</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    @foreach(var item in Model){
+                        <div class="col p-3 m-6">
+                            <div class="body-background-products">
+                                <div 
+                                    class="background-products-img" 
+                                    style="background-image: url('../img/Product/@item.ImgUrl');"
+                                >
+                                </div>
+                                <div class="background-products-info">
+                                    <div class="products-info-start fz-1-6rem"><i class="fa-solid fa-star"></i> 1 review</div>
+                                    <div class="products-info-name fz-1-6rem"><a href="~/Product?idProduct=@item.Id" class="products-info-link">@item.ProductName</a> </div>
+                                    <div class="products-info-price">
+                                        <div class="products-info-price-new fz-1-6rem">@string.Format("{0:n0}", item.Price)</div>
+                                    </div>
+                                </div>
+                                <div class="background-products-shopping">
+                                    <div class="products-shopping-item active fz-1-6rem">
+                                        <i class="fa-solid fa-heart"></i>
+                                    </div>
+                                    <div class="products-shopping-item fz-1-6rem">
+                                        <i class="fa-solid fa-bag-shopping"></i>
+                                    </div>
+                                </div>
+                                <div class="products-shopping-discount fz-1-6rem">
+                                    -17%
+                                </div>
+                                
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="row">
+                    <div class="col p-12 m-12">
+                        <div class="body-background-pagination">
+                            <ul class="pagination-list">
+                                <li class="pagination-page">
+                                    <i class="fa-solid fa-left-long"></i>
+                                </li>
+                                <li class="pagination-page active">
+                                    1
+                                </li>
+                                <li class="pagination-page">
+                                    2
+                                </li>
+                                <li class="pagination-page">
+                                    3
+                                </li>
+                                <li class="pagination-page">
+                                    4
+                                </li>
+                                <li class="pagination-page">
+                                    <i class="fa-solid fa-right-long"></i>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col p-12 m-12">
+                <div class="body-view-products">
+                    <h2 class="body-view-products-name">Recently Viewed Products</h2>
+                </div>
+            </div>
+            <div class="col p-12 m-12">
+                <div class="row">
+                    @foreach(var item in Model){
+                        <div class="col p-2-4 m-6">
+                            <div class="body-background-products">
+                                <div 
+                                    class="background-products-img" 
+                                    style="background-image: url(../img/Product/@(item.ImgUrl));"
+                                >
+                                    
+                                </div>
+                                <div class="background-products-info">
+                                    <div class="products-info-start fz-1-6rem"><i class="fa-solid fa-star"></i> 1 review</div>
+                                    <div class="products-info-name fz-1-6rem"><a href="~/Product?idProduct=@item.Id" class="products-info-link">@item.ProductName</a> </div>
+                                    <div class="products-info-price">
+                                        <div class="products-info-price-new fz-1-6rem">@string.Format("{0:n0}", item.Price)</div>
+                                    </div>
+                                </div>
+                                <div class="background-products-shopping">
+                                    <div class="products-shopping-item active fz-1-6rem">
+                                        <i class="fa-solid fa-heart"></i>
+                                    </div>
+                                    <div class="products-shopping-item fz-1-6rem">
+                                        <i class="fa-solid fa-bag-shopping"></i>
+                                    </div>
+                                </div>
+                                <div class="products-shopping-discount fz-1-6rem">
+                                    -17%
+                                </div>
+                                
+                            </div>
+                        </div>
+                    }
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    

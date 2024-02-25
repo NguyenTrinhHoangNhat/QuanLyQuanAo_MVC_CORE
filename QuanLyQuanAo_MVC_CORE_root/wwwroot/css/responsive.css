@@ -1,0 +1,197 @@
+/* respoinsive 
+kích cỡ:  
++ PC    : >= 1024px
++ tablet: >= 740px & < 1024px
++ Mobile: < 740px 
+
+-PC-
+@media (min-width:1024px) { } 
+
+-tablet-
+@media (min-width:740px) and (max-width: 1023px ) { }
+
+-Mobile-
+@media (max-width:740px) { }
+
+*/
+/* mobile */
+@media screen and (max-width:739px){
+    .footer-logo,.footer-des,.footer-contact{
+        margin: 0 15px;
+    }
+    .header-parameter{
+        display: none;
+    }
+    .hide-on-mobile{
+        display: none !important;
+    }
+    .header-navbar-list{
+        display: none !important;
+    }
+    .header-navbar-user{
+        padding-right: 10px;
+    }
+    .header-navbar-nav{
+        padding-left: 10px;
+    }
+    .sub-footer-name{
+        padding: 0 10px;
+    }
+    .sub-footer-emailadress{
+        margin: 0 20px;
+    }
+    .sub-footer-emailadress input{
+        width: 70% !important;
+    }
+    .sub-footer-emailadress-btn{
+        width: 29% !important;
+    }
+    .sub-footer{
+        padding:50px 20px !important;
+    }
+    .footer-list{
+        margin: 10px 0;
+    }
+    .footer-name,.footer-list{
+        text-align: center;
+    }
+    .body-background-products:hover .products-shopping-flashsale{
+        right: 7px !important;
+        top: 100px;
+    }
+    .body-background-baner{
+        position: relative;
+        width: 100%;
+        height: 250px;
+    }
+    .body-background-baner-content{
+        padding: 0 20px;
+        display: flex ;
+        align-items: center;
+    }
+    .header-navbar{
+        display: flex ;
+        align-items: center;
+        justify-content: space-between;
+        z-index: 6;
+        background-color: var(--white-color);
+        width: 100%;
+        padding:  0 10px 10px;
+        position: fixed;
+        top: 0;
+    }
+    .body-background-baner{
+        margin-top: 30px;
+    }
+    .pro-product-detail-tabs{
+        flex-direction: column;
+    }
+    .pro-woocommerce-list{
+        display: block;
+    }
+    .pro-woocommerce-item{
+        display: inline-block;
+        padding: 5px 0;
+    }
+    .pro-woocommerce {
+        margin-top: 50px;
+        padding: 0 10px ;
+    }
+
+    /* product page */
+    .pro-product-detail-img{
+        padding: 0 15px;
+    }
+    .pro-product-detail-img-sub{
+        height: 150px;
+    }
+    .detail-img-sub-img{
+        width: 120px;
+        height: 120px;
+    }
+    .pro-product-detail-info{
+        padding: 0 15px;
+    }
+    .pro-product-detail-tabs{
+        padding: 0 15px;
+    }
+    .pro-product-detail-tabs{
+        display: flex;
+        flex-direction: column;
+    }
+    .product-detail-tab-pane{
+        padding:0 15px;
+    }
+    .fixed_count-add{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: var(--white-color);
+        z-index: 10;
+        display: flex;
+        padding: 10px;
+        gap: 5px;
+    }
+    /* page checkout */
+    .checkout-form-validate{
+        margin: 60px 15px;
+    }
+    /* page account */
+    .account-page-login{
+        margin: 60px 15px;
+    }
+    /* page cart */
+    .cart-has-products{
+        margin: 60px 15px;
+    }
+    .has-products-title-item{
+        flex: 1;
+    }
+    .has-products-title-item{
+        padding: 0;
+    }
+    .pro_item-name-type{
+        padding-left: 10px;
+    }
+    .pro-item-subtotal{
+        margin: 0;
+        padding-left: 20px;
+    }
+    .pro-item-quantity{
+        margin: 0;
+        font-size: 1.3rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .products-in-cart-coupon{
+        flex-direction: column;
+        align-items: flex-start;
+        margin: 0 15px;
+        gap: 10px;
+    }
+    .products-in-cart-coupon-input{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+    .products-in-cart-coupon-update{
+        width: 50%;
+    }
+}
+/* pc */
+@media screen and (min-width:1024px) {
+    .hide-on-pc{
+        display: none !important;
+    }
+} 
+@keyframes fadein{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}

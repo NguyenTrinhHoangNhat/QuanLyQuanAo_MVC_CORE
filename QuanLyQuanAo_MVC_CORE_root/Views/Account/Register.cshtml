@@ -1,0 +1,42 @@
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <div class="grid wide">
+        <div class="row">
+            <div class="col p-12 m-12" style="display: flex;justify-content: center;">
+                <form action="~/Account/RegisterSubmit" method="post" enctype="multipart/form-data" class="checkout-form-validate"
+                    class="account-page-login">
+                    <h2 class="form-validate-title">Register</h2>
+                    <div class="row no-gutters">
+                        <div class="col p-12 m-12">
+                            <label for="" class="form-validate-name">Username*</label>
+                            <input type="text" class="form-validate-input" name="Username">
+                        </div>
+                        <div class="col p-12 m-12">
+                            <label for="" class="form-validate-name">Email address *</label>
+                            <input type="text" class="form-validate-input" name="Email">
+                        </div>
+                        <div class="col p-12 m-12">
+                            <label for="" class="form-validate-name">Password *</label>
+                            <input type="text" class="form-validate-input" name="Pass">
+                        </div>
+                        <div class="col p-12 m-12">
+                            <label for="" class="form-validate-name">Password Re-render *</label>
+                            <input type="text" class="form-validate-input" name="PassRen">
+                        </div>
+                    </div>
+                    @{
+                        if(!String.IsNullOrEmpty(ViewBag.error)){
+                            <span style="color:red;font-size: 17px;font-style: italic;">
+                                @ViewBag.error
+                            </span>
+                        }
+                    }
+                    <button type="submit" class="form-validate-submit-btn">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
